@@ -1,0 +1,126 @@
+{% extends 'store/layouts/main.html' %}
+
+{% block content %}
+
+    <div class="breadcrumb-area">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <h2>Other</h2>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="active" href=" {% url 'cart' %}">Cart</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    <div class="uren-cart-area  cart-item ">
+    <div class="container-fluid product_data  ">
+    {% if cart %}
+        <div class="row updateData  " >
+            <div class="col-12   ">
+                <form action="javascript:void(0)">
+
+                    <div class="table-content table-responsive " >
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="uren-product-remove">remove</th>
+                                    <th class="uren-product-thumbnail">images</th>
+                                    <th class="cart-product-name">Product</th>
+                                    <th class="uren-product-price">Unit Price</th>
+                                    <th class="uren-product-quantity">Quantity</th>
+                                    <th class="uren-product-subtotal">Total</th>
+                                </tr>
+                            </thead>
+
+                            {% for item in cart %}
+                            <tbody>
+                                <tr >
+                                    <td class="uren-product-remove delete-cart-item cartdata "><a><i class="fa fa-trash" title="Remove"></i></a></td>
+                                    <td class="uren-product-thumbnail"><a href="javascript:void(0)"><img src="{{ item.product.product_image.url }}" height="70px" width="70px" alt="Uren's Cart Thumbnail"></a></td>
+                                    <td class="uren-product-name"><a href="javascript:void(0)" >{{ item.product.name}}</a></td>
+                                    <td class="uren-product-price"><span class="amount selling_price" >${{ item.product.selling_price }} </span></td>
+                                    <td class="quantity">
+                                        {% csrf_token %}
+                                        <input type="hidden" value="{{ item.product_id }}" class="prod_id">
+                                        <input type="hidden" value="{{  item.product.selling_price }}" class="price">
+                                        {% if item.product.quantity >= item.product_qty %}
+                                        <div class="cart-plus-minus changeQuantity">
+                                            <input class="cart-plus-minus-box qty-input " id="qty-input" value="{{ item.product_qty }} " type="text">
+                                            <div class="dec qtybutton " ><i class="fa fa-angle-down"></i></div>
+                                            <div class="inc qtybutton "><i class="fa fa-angle-up  "></i></div>
+                                        </div>
+
+                                        {% else %}
+
+                                        <h6>Out of Stock</h6>
+                                        {% endif %}
+                                    </td>
+                                    <td class="product-subtotal " >
+                                        <span class="amount" id="subtotal-{{ item.product.id }}" >{{ item.subtotal }} </span>
+{#                                        <span class="cart-item amount" data-subtotal="{{ item.subtotal }}"> </span>#}
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function() {
+                                            var price = {{ item.product.selling_price }};
+                                            var quantity = {{ item.product_qty }};
+                                            var subtotal = price * quantity;
+                                            document.getElementById("subtotal-{{ item.product.id }}").textContent = "$"+subtotal.toFixed(2);
+                                            var suptotalElement = document.getElementById("subtotal-{{ item.product.id }}");
+                                            suptotalElement.textContent ="$"+ subtotal.toFixed(2);
+                                            });
+                                        </script>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+
+                        </table>
+
+                    </div>
+                    <div class="row">
+                            <div class="col-md-5 ml-auto">
+                                <div class="cart-page-total" >
+{#                                   <span class="cart-count cartotal-count "></span>#}
+                                    <h2>Cart totals</h2>
+{#                                    <input class="cart-plus-minus-box qty-input " id="qty-input" value="{{ product_qty }} " type="text">#}
+{#                                    <input type="hidden" value="{{  product.selling_price }}" class="price">#}
+                                    <div class="minicart-count_area " style="size: 200px" >
+                                        <span class="item-count cart-count ">0</span>
+                                        <i class="ion-bag" ></i>
+                                    </div>
+                                    <ul >
+{#                                    <li >#}
+{#                                        Subtotal#}
+{#                                        <span class="cart-count cart-subcount"></span>#}
+{#                                        <span class="amount" id="total1">${{ total_price}}</span>#}
+{##}
+{#                                    </li>#}
+                                    <li >
+                                        Total
+                                        <span class="amount" id="total1" >${{ total_price }} </span>
+                                    </li>
+{#                                    <li>Total <span> </span></li>#}
+
+                                    </ul>
+
+                                <a href=" {% url 'checkout' %}">Proceed to checkout</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </form>
+            </div>
+        </div>
+    {% else %}
+        <p>Your cart is empty.</p>
+        <button ><a href="{% url 'collections' %}"> GO SHOPPING </a></button>
+    {% endif %}
+    </div>
+</div>
+
+
+{% endblock content %}
+

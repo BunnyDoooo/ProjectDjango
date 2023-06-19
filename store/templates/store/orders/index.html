@@ -1,0 +1,54 @@
+{% extends 'store/layouts/main.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <h2>MY ORDERS</h2>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li class="active" href=" {% url 'checkout' %}">Check Out</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="myaccount-orders">
+    <br>
+        <div class="table-responsive">
+        <div class="card-header "><h4 class="small-title">MY ORDERS</h4></div>
+            <table class="table table-bordered table-hover ">
+
+
+
+                <thead>
+                    <tr>
+                        <th>ORDER DATE</th>
+                        <th>TRACKING NUMBER</th>
+                        <th>STATUS</th>
+                        <th>TOTAL</th>
+                        <th></th>
+                    </tr>
+                </thead>
+               <tbody>
+                {% for item in orders  %}
+                    <tr>
+                        <td>{{ item.created_at }}</td>
+                        <td>{{ item.tracking_no }}</td>
+                        <td>${{ item.total_price }}</td>
+                        <td>{{ item.status }}</td>
+                        <td><a href="{% url 'orderview'  item.tracking_no %}" class="uren-btn uren-btn_dark uren-btn_sm"><span>View</span></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    <br>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'store/layouts/main.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <h2>Wish List</h2>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="active" href=" {% url 'wishlist' %}">Wishlist</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="uren-cart-area product_data   ">
+            <div class="container-fluid  ">
+                <div class="row  ">
+                    <div class="col-12  ">
+                        <form action="javascript:void(0)">
+                            <div class="table-content table-responsive   ">
+                              <table class="table">
+                                <thead>
+                                        <tr>
+                                            <th class="uren-product-remove">remove</th>
+                                            <th class="uren-product-thumbnail">images</th>
+                                            <th class="cart-product-name">Product</th>
+                                            <th class="uren-product-price">Unit Price</th>
+                                            <th class="uren-product-quantity">View Product</th>
+                                            <th class="uren-product-subtotal">Add To Card</th>
+                                        </tr>
+                                </thead>
+                                {% if wishlist %}
+                                    {% for item in wishlist  %}
+                                    <tbody  >
+                                        <tr>
+                                            <td class="uren-product-remove delete-wishlist-item "><a><i class="fa fa-trash" title="Remove"></i></a></td>
+                                            <td class="uren-product-thumbnail"><a href="javascript:void(0)"><img src="{{ item.product.product_image.url }}" height="70px" width="70px" alt="Uren's Cart Thumbnail"></a></td>
+                                            <td class="uren-product-name"><a href="javascript:void(0)">{{ item.product.name }}</a></td>
+                                            <td class="uren-product-price"><span class="amount">  {{ item.product.selling_price | stringformat:'d'}} </span></td>
+                                            <td class="uren-product-quantity uren-cart_btn">
+                                                 {% csrf_token %}
+                                                <input type="hidden"  value="{{ item.product_id }}" class="prod_id">
+                                                <a href="{% url 'productview' item.product.category.slug item.product.slug %}">View Product</a></td>
+                                            <td class="uren-product-subtotal uren-cart_btn  btnaddToCart2">
+                                                <a> Add To Cart</a>
+                                            </td>
+
+{##}
+{#                                                <a>Delete WishList</a></td>#}
+                                        </tr>
+                                    </tbody>
+                                    {% endfor %}
+                                    {% else %}
+                                        <h4> Your WishList in empty</h4>
+                                {% endif %}
+                              </table>
+
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+{% endblock content %}

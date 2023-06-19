@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
+
 ]
 
 MIDDLEWARE = [
@@ -64,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.controller.context_processors.category',
             ],
         },
     },
@@ -84,7 +86,9 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'PORT': '3306',
-
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
@@ -138,3 +142,4 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

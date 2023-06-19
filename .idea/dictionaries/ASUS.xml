@@ -2,6 +2,9 @@
   <dictionary name="ASUS">
     <words>
       <w>closebtn</w>
+      <w>collectionsview</w>
+      <w>csrfmiddlewaretoken</w>
+      <w>iten</w>
       <w>navbar</w>
     </words>
   </dictionary>

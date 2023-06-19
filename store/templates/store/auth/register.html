@@ -1,11 +1,6 @@
 {% load static %}
-
-<!doctype html>
-<html class="no-js" lang="zxx">
-
-
+{% include 'store/inc/header.html' %}
 <head>
-    {% block title %}
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Uren - Car Accessories Shop HTML Template</title>
@@ -42,44 +37,104 @@
     <script src="{% static '/js/vendor/vendor.min.js' %}"></script>
     <script src="{% static '/js/plugins/plugins.min.js' %}"></script>
     -->
-{#    <script src="{% static '../../Jquery/prettify.js' %}"></script>#}
+
     <!-- Main Style CSS (Please use minify version for better website load performance) -->
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
-{#    <!--<link rel="stylesheet" href="{% static '/css/style.min.css' %}">-->#}
-{% endblock %}
+    <!--<link rel="stylesheet" href="{% static '/css/style.min.css' %}">-->
+
 </head>
+
+{% block content %}
+{#{{ form.username }}#}
 <body>
 
-{#{% include 'store/inc/slider.html' %}#}
-    <header>
-        <!-- Thêm header của trang web -->
-        {% include 'store/inc/header.html' %}
-    </header>
-    <main>
-        {% block content %}
 
-        {% endblock content %}
-    </main>
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="breadcrumb-content">
+            <h2>Other</h2>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-    <footer>
-     {% include 'store/inc/Footer.html' %}
-        <!-- Thêm footer của trang web -->
-    </footer>
+
+<div class="uren-login-register_area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-10 col-md-6 ">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="login-form">
+                                <h4 class="login-title">Register</h4>
+                                <div class="row">
+                                    <div class="col-md-6 col-8 mb-20">
+                                        <label >First Name</label>
+                                        <label for="">{{ form.first_name }}</label>
+                                    </div>
+                                    <div class="col-md-6 col-8 mb-20  ">
+                                        <label>Last Name</label>
+                                        <label for="">{{ form.last_name }}</label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>User Name</label>
+                                        <label for="" >{{ form.username }}</label>
+                                        {% if form.username %}
+                                            <label class="text-danger">{{ form.errors.username }}</label>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Email Address*</label>
+                                        <label for="">{{ form.email }}</label>
+                                        {% if form.email %}
+                                            <label class="text-danger">{{ form.errors.email }}</label>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Password</label>
+                                        <label for="">{{ form.password1 }}</label>
+                                        {% if form.password1 %}
+                                            <label class="text-danger">{{ form.errors.password1 }}</label>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Confirm Password</label>
+                                        <label for="">{{ form.password2 }}</label>
+                                        {% if form.password2 %}
+                                            <label class="text-danger">{{ form.errors.password2 }}</label>
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="uren-register_btn">Register</button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
     <!-- JS
 ============================================ -->
-{% block js %}
+
     <!-- jQuery JS -->
     <script src="{% static '/js/vendor/jquery-1.12.4.min.js' %}"></script>
-{#    <script src="{% static '/js/vendor/jquery-3.6.0.js' %}s"></script>#}
-    <script src="{% static '/js/vendor/jquery-ui.js' %}"></script>
     <!-- Modernizer JS -->
     <script src="{% static '/js/vendor/modernizr-2.8.3.min.js' %}"></script>
     <!-- Popper JS -->
     <script src="{% static '/js/vendor/popper.min.js' %}"></script>
     <!-- Bootstrap JS -->
     <script src="{% static '/js/vendor/bootstrap.min.js' %}"></script>
+
     <!-- Slick Slider JS -->
     <script src="{% static '/js/plugins/slick.min.js' %}"></script>
     <!-- Barrating JS -->
@@ -103,12 +158,10 @@
     <script src="{% static '/js/plugins/waypoints.min.js' %}"></script>
     <!-- jQuery Zoom JS -->
     <script src="{% static '/js/plugins/jquery.zoom.min.js' %}"></script>
-{#    <script src="{% static '../../Jquery/prettify.js' %}"></script>#}
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Vendor & Plugins JS (Please remove the comment from below vendor.min.js' %} & plugins.min.js' %} for better website load performance and remove js files from avobe) -->
     <!--
-{#<script src="{% static '/js/vendor/vendor.min.js' %}"></script>#}
+<script src="{% static '/js/vendor/vendor.min.js' %}"></script>
 <script src="{% static '/js/plugins/plugins.min.js' %}"></script>
 -->
 
@@ -116,47 +169,8 @@
     <script src="{% static '/js/main.js' %}"></script>
 
 
-
-
-    <script>
-
-    $( function() {
-    var availableTags = [];
-
-    $.ajax({
-       method: "GET",
-        url: "/product-list",
-        success:function (response) {
-
-           startAutocomplete(response);
-        }
-
-    });
-
-    function startAutocomplete(availableTags){
-        $( "#search" ).autocomplete({
-        source: availableTags
-    });
-    }
-
-
-  } );
-
-    </script>
-{#<script>#}
-{##}
-{# $(document).ready(function() {#}
-{#        $('#search').keyup(function() {#}
-{#            // Lấy giá trị của phần tìm kiếm#}
-{#            var search = $(this).val();#}
-{#            #}
-{#            // Tiếp tục xử lý tìm kiếm...#}
-{#        });#}
-{#    });#}
-{#</script>#}
-
-
-{% endblock %}
 </body>
 
-</html>
+{% endblock content %}
+
+{% include 'store/inc/Footer.html' %}
