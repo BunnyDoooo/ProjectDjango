@@ -1,53 +1,8 @@
+{% extends 'store/layouts/main.html' %}
 {% load static %}
-{% include 'store/inc/header.html' %}
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Uren - Car Accessories Shop HTML Template</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 
-    <!-- CSS
-	============================================ -->
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}">
-    <!-- Fontawesome -->
-    <link rel="stylesheet" href="{% static '/css/vendor/font-awesome.css' %}">
-    <!-- Fontawesome Star -->
-    <link rel="stylesheet" href="{% static '/css/vendor/fontawesome-stars.css' %}">
-    <!-- Ion Icon -->
-    <link rel="stylesheet" href="{% static '/css/vendor/ion-fonts.css' %}">
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="{% static '/css/plugins/slick.css' %}">
-    <!-- Animation -->
-    <link rel="stylesheet" href="{% static '/css/plugins/animate.css' %}">
-    <!-- jQuery Ui -->
-    <link rel="stylesheet" href="{% static '/css/plugins/jquery-ui.min.css' %}">
-    <!-- Lightgallery -->
-    <link rel="stylesheet" href="{% static '/css/plugins/lightgallery.min.css' %}">
-    <!-- Nice Select -->
-    <link rel="stylesheet" href="{% static '/css/plugins/nice-select.css' %}">
-
-    <!-- Vendor & Plugins CSS (Please remove the comment from below vendor.min.css' %} & plugins.min.css' %} for better website load performance and remove css files from the above) -->
-    <!--
-    <script src="{% static '/js/vendor/vendor.min.js' %}"></script>
-    <script src="{% static '/js/plugins/plugins.min.js' %}"></script>
-    -->
-
-    <!-- Main Style CSS (Please use minify version for better website load performance) -->
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
-    <!--<link rel="stylesheet" href="{% static '/css/style.min.css' %}">-->
-
-</head>
 
 {% block content %}
-{#{{ form.username }}#}
-<body>
-
 
 <div class="breadcrumb-area">
     <div class="container">
@@ -62,92 +17,41 @@
     </div>
 </div>
 
-
-<!-- Uren's Breadcrumb Area End Here -->
-<!-- Begin Uren's Login Register Area -->
-<div class="uren-login-register_area">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
-                        <!-- Login Form s-->
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <div class="login-form">
-                        <h4 class="login-title">Login</h4>
-                        <div class="row">
-                            <div class="col-md-12 col-12">
-                                <label >Email Address*</label>
-                                <input type="username" class="form-control" name="username" placeholder="Username">
+<!-- Login Register -->
+    <div class="uren-login-register_area">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
+                    <!-- Login Forms-->
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <div class="login-form">
+                            <h4 class="login-title">Login</h4>
+                            <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <label >Email Address*</label>
+                                    <input type="username" class="form-control" name="username" placeholder="Username">
+                                </div>
+                                <div class="col-12 mb--20">
+                                    <label >Password</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                </div>
+                                <div class="col-md-12">
+                                    <button type='submit' class="uren-login_btn">Login</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="forgotton-password_info">
+                                        <a href="{% url 'register' %}"> register</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-12 mb--20">
-                                <label >Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Password">
-                            </div>
-                            <div class="col-md-12">
-                                 <button type='submit' class="uren-login_btn">Login</button>
-                            </div>
-                           <div class="col-md-4">
-                               <div class="forgotton-password_info">
-                                   <a href="{% url 'register' %}"> register</a></div>
-                           </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-
-
-    <!-- JS
-============================================ -->
-
-    <!-- jQuery JS -->
-    <script src="{% static '/js/vendor/jquery-1.12.4.min.js' %}"></script>
-    <!-- Modernizer JS -->
-    <script src="{% static '/js/vendor/modernizr-2.8.3.min.js' %}"></script>
-    <!-- Popper JS -->
-    <script src="{% static '/js/vendor/popper.min.js' %}"></script>
-    <!-- Bootstrap JS -->
-    <script src="{% static '/js/vendor/bootstrap.min.js' %}"></script>
-
-    <!-- Slick Slider JS -->
-    <script src="{% static '/js/plugins/slick.min.js' %}"></script>
-    <!-- Barrating JS -->
-    <script src="{% static '/js/plugins/jquery.barrating.min.js' %}"></script>
-    <!-- Counterup JS -->
-    <script src="{% static '/js/plugins/jquery.counterup.js' %}"></script>
-    <!-- Nice Select JS -->
-    <script src="{% static '/js/plugins/jquery.nice-select.js' %}"></script>
-    <!-- Sticky Sidebar JS -->
-    <script src="{% static '/js/plugins/jquery.sticky-sidebar.js' %}"></script>
-    <!-- Jquery-ui JS -->
-    <script src="{% static '/js/plugins/jquery-ui.min.js' %}"></script>
-    <script src="{% static '/js/plugins/jquery.ui.touch-punch.min.js' %}"></script>
-    <!-- Lightgallery JS -->
-    <script src="{% static '/js/plugins/lightgallery.min.js' %}"></script>
-    <!-- Scroll Top JS -->
-    <script src="{% static '/js/plugins/scroll-top.js' %}"></script>
-    <!-- Theia Sticky Sidebar JS -->
-    <script src="{% static '/js/plugins/theia-sticky-sidebar.min.js' %}"></script>
-    <!-- Waypoints JS -->
-    <script src="{% static '/js/plugins/waypoints.min.js' %}"></script>
-    <!-- jQuery Zoom JS -->
-    <script src="{% static '/js/plugins/jquery.zoom.min.js' %}"></script>
-
-    <!-- Vendor & Plugins JS (Please remove the comment from below vendor.min.js' %} & plugins.min.js' %} for better website load performance and remove js files from avobe) -->
-    <!--
-<script src="{% static '/js/vendor/vendor.min.js' %}"></script>
-<script src="{% static '/js/plugins/plugins.min.js' %}"></script>
--->
-
-    <!-- Main JS -->
-    <script src="{% static '/js/main.js' %}"></script>
-
-
-</body>
 
 {% endblock content %}
 
-{% include 'store/inc/Footer.html' %}
+

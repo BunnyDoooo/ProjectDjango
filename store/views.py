@@ -3,18 +3,24 @@ from .models import *
 from django.contrib import messages
 from django.http.response import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 def home(request):
-
-    return render(request, "store/index.html", )
-
+    products = Product.objects.filter(status=0)
+    context = {'products': products}
+    return render(request, "store/index.html",context )
 
 def collections(request):
     category = Category.objects.filter(status=0)
     categories = Category.objects.filter(status=0)
     products = Product.objects.filter(status=0)
-    context = {'category': category, 'products': products, 'categories': categories}
+    paginator = Paginator(products, 10)  # Số lượng sản phẩm trên mỗi trang
+
+    page_number = request.GET.get('page')  # Lấy số trang hiện tại từ tham số GET 'page'
+    page_obj = paginator.get_page(page_number)  # Lấy đối tượng trang hiện tại
+
+    context = {'category': category, 'products': page_obj, 'categories': categories}
     return render(request, "store/shop.html", context)
 
 
@@ -22,8 +28,10 @@ def collectionsview(request, slug):
     if Category.objects.filter(slug=slug, status=0):
         products = Product.objects.filter(category__slug=slug)
         category = Category.objects.filter(slug=slug).first()
-        # categories = Category.objects.filter(status=0)
-        context = {'products': products, 'category': category}
+        paginator = Paginator(products, 6)  # Số sản phẩm trên mỗi trang
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {'products': page_obj, 'category': category}
         return render(request, "store/products/index.html", context)
     else:
         messages.warning(request, "No Such category found")
@@ -48,25 +56,16 @@ def productListAjax(request):
     productslist = list(products)
 
     return JsonResponse(productslist, safe=False)
-#
-# def searchProduct(request):
-#     if request.method == 'POST':
-#         searchedterm = request.POST.get('productSearch')
-#         if searchedterm == "":
-#             return redirect(request.META.get('HTTP_REFERER'))
-#         else:
-#             product = Product.objects.filter(name__contains=searchedterm).first()
-#
-#             if product:
-#                 return redirect('shop/'+product.category.slug+'/'+product.slug)
-#             else:
-#                 messages.info(request, "No product matched your search")
-#                 return redirect(request.META.get('HTTP_REFERER'))
-#     return redirect(request.META.get('HTTP_REFERER'))
+
 def search(request):
     query = request.GET.get('Search')
     products = Product.objects.filter(name__icontains=query)
-    context = {'products': products, 'query': query}
+    category = Category.objects.filter(status=0)
+    categories = Category.objects.filter(status=0)
+    paginator = Paginator(products, 6)  # Số sản phẩm trên mỗi trang
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {'products': page_obj, 'query': query, 'categories': categories, 'category': category}
     return render(request, 'store/search.html', context)
 
 

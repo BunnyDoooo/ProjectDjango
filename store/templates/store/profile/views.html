@@ -5,80 +5,94 @@
 
 {% block content %}
     <div class="breadcrumb-area">
-    <div class="container">
-        <div class="breadcrumb-content">
-            <h2>My Account</h2>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li class="active" href=" {% url 'my_profile' %}">My Account</li>
-            </ul>
+        <div class="container">
+            <div class="breadcrumb-content">
+                <h2>My Account</h2>
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="active" href=" {% url 'my_profile' %}">My Account</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-  <div class="container">
+    <div class="container">
         <div class="col-md-8 mx-auto">
             <div class="card">
                 <div class="card-header" >
                     <h5 class="panel-title">
-                        <a href="javascript:void(0)" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <a href="javascript:void(0)"
+                           data-toggle="collapse"
+                           data-target="#collapseOne"
+                           aria-expanded="true"
+                           aria-controls="collapseOne">
                             Profile
                         </a>
                     </h5>
                 </div>
                 <div id="collapseOne" class="collapse show" >
                     <div class="card-body">
-                        <p><strong>Name:</strong> {{ user.first_name}} {{ user.last_name}}</p>
-                        <p><strong>Email:</strong> {{ user.email }} </p>
+                        <p>
+                            <strong>Name:</strong> {{ user.first_name}} {{ user.last_name}}
+                        </p>
+                        <p>
+                            <strong>Email:</strong> {{ user.email }}
+                        </p>
                     </div>
                 </div>
-
-               <div class="card">
-                   <div class="card-header" >
-                       <h5 class="panel-title">
-                           <a href="javascript:void(0)" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                               Edit Profile
-                           </a>
-                       </h5>
-                   </div>
-                   <div id="collapseThree" class="collapse" data-parent="#accordion">
-                       <div class="card-body">
-                           <form action="{% url 'my_profile' %}" class="uren-form" method="POST">
-                               {% csrf_token %}
-                               <div class="uren-form-inner">
-                                                <div class="single-input single-input-half">
-                                                    <label for="account-details-firstname">First Name*</label>
-                                                    <input type="text" id="fname" name="fname" value="{{ user.first_name }}" required>
-                                                </div>
-                                                <div class="single-input single-input-half">
-                                                    <label for="account-details-lastname">Last Name*</label>
-                                                    <input type="text" id="lname" name="lname" value="{{ user.last_name }}" required >
-                                                </div>
-                                                <div class="single-input single-input-half">
-                                                    <label for="account-details-firstname">User Name*</label>
-                                                    <input type="text" id="username" name="username" value="{{ user.username }}" required >
-                                                </div>
-                                                <div class="single-input">
-                                                    <label for="account-details-email">Email*</label>
-                                                    <input type="email" id="email" name="email" value="{{ user.email }}" required>
-                                                </div>
-                                                <div class="single-input">
-                                                    <label for="account-details-newpass">New Password (leave blank to leave
-                                                        unchanged)</label>
-                                                    <input type="password" id="password" name="password" minlength="8">
-                                                </div>
-                                                <div class="single-input">
-                                                    <label for="account-details-confpass">Confirm New Password</label>
-                                                    <input type="password"  id="password_confirmation" name="password_confirmation" minlength="8">
-                                                </div>
-                                                <div class="single-input">
-                                                    <button class="uren-btn uren-btn_dark" type="submit"><span>SAVECHANGES</span></button>
-                                                </div>
-                                            </div>
-                           </form>
-                       </div>
-                   </div>
-               </div>
+                <div class="card">
+                    <div class="card-header" >
+                        <h5 class="panel-title">
+                            <a href="javascript:void(0)"
+                               class="collapsed"
+                               data-toggle="collapse"
+                               data-target="#collapseThree"
+                               aria-expanded="false"
+                               aria-controls="collapseThree">
+                                Edit Profile
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <form action="{% url 'my_profile' %}" class="uren-form" method="POST">
+                                {% csrf_token %}
+                                <div class="uren-form-inner">
+                                    <div class="single-input single-input-half">
+                                        <label for="account-details-firstname">First Name*</label>
+                                        <input type="text" id="fname" name="fname" value="{{ user.first_name }}" required>
+                                    </div>
+                                    <div class="single-input single-input-half">
+                                        <label for="account-details-lastname">Last Name*</label>
+                                        <input type="text" id="lname" name="lname" value="{{ user.last_name }}" required >
+                                    </div>
+                                    <div class="single-input single-input-half">
+                                        <label for="account-details-firstname">User Name*</label>
+                                        <input type="text" id="username" name="username" value="{{ user.username }}" required >
+                                    </div>
+                                    <div class="single-input">
+                                        <label for="account-details-email">Email*</label>
+                                        <input type="email" id="email" name="email" value="{{ user.email }}" required>
+                                    </div>
+                                    <div class="single-input">
+                                        <label for="account-details-newpass">New Password (leave blank to leave
+                                            unchanged)</label>
+                                        <input type="password" id="password" name="password" minlength="8">
+                                    </div>
+                                    <div class="single-input">
+                                        <label for="account-details-confpass">Confirm New Password</label>
+                                        <input type="password"  id="password_confirmation" name="password_confirmation" minlength="8">
+                                    </div>
+                                    <div class="single-input">
+                                        <button class="uren-btn uren-btn_dark" type="submit"><span>SAVECHANGES</span></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

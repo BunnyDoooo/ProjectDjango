@@ -2,20 +2,27 @@
 
 {% block content %}
     <div class="breadcrumb-area">
-    <div class="container">
-        <div class="breadcrumb-content">
-            <h2>Other</h2>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a class="active" href=" {% url 'collections' %}">Shop</a></li>
-                <li><a class="active" href="{% url 'collectionsview' products.category.slug %}"> {{ products.category.name }} /</a></li>
-                <li class="text-white" href="{% url 'productview'  products.category.slug products.slug %}"> {{ products.name }}</li>
-            </ul>
+        <div class="container">
+            <div class="breadcrumb-content">
+                <h2>Other</h2>
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li>
+                        <a class="active" href=" {% url 'collections' %}">Shop</a>
+                    </li>
+                    <li>
+                        <a class="active" href="{% url 'collectionsview' products.category.slug %}"> {{ products.category.name }} /</a>
+                    </li>
+                    <li class="text-white" href="{% url 'productview'  products.category.slug products.slug  %}"> {{ products.name }}</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!-- Begin Uren's Single Product Area -->
-   <div class="main-wrapper product_data">
+
+    <!-- Begin Single Product  -->
+    <div class="main-wrapper product_data">
         <div class="sp-area ">
             <div class="container-fluid ">
                 <div class="sp-nav">
@@ -33,21 +40,6 @@
                                     <div class="single-slide red zoom">
                                         <img src="{{ products.product_image.url }}" alt="Uren's Product Image">
                                     </div>
-{#                                    <div class="single-slide orange zoom">#}
-{#                                        <img src="assets/images/product/large-size/2.jpg" alt="Uren's Product Image">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide brown zoom">#}
-{#                                        <img src="assets/images/product/large-size/3.jpg" alt="Uren's Product Image">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide umber zoom">#}
-{#                                        <img src="assets/images/product/large-size/4.jpg" alt="Uren's Product Image">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide black zoom">#}
-{#                                        <img src="assets/images/product/large-size/5.jpg" alt="Uren's Product Image">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide green zoom">#}
-{#                                        <img src="assets/images/product/large-size/6.jpg" alt="Uren's Product Image">#}
-{#                                    </div>#}
                                 </div>
                                 <div class="sp-img_slider-nav slick-slider-nav uren-slick-slider slider-navigation_style-3" data-slick-options='{
                                 "slidesToShow": 3,
@@ -61,24 +53,6 @@
                                         {"breakpoint":768, "settings": {"slidesToShow": 3}},
                                         {"breakpoint":575, "settings": {"slidesToShow": 2}}
                                     ]'>
-{#                                    <div class="single-slide red">#}
-{#                                        <img src="assets/images/product/small-size/1.jpg" alt="Uren's Product Thumnail">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide orange">#}
-{#                                        <img src="assets/images/product/small-size/2.jpg" alt="Uren's Product Thumnail">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide brown">#}
-{#                                        <img src="assets/images/product/small-size/3.jpg" alt="Uren's Product Thumnail">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide umber">#}
-{#                                        <img src="assets/images/product/small-size/4.jpg" alt="Uren's Product Thumnail">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide red">#}
-{#                                        <img src="assets/images/product/small-size/5.jpg" alt="Uren's Product Thumnail">#}
-{#                                    </div>#}
-{#                                    <div class="single-slide orange">#}
-{#                                        <img src="assets/images/product/small-size/6.jpg" alt="Uren's Product Thumnail">#}
-{#                                    </div>#}
                                 </div>
                             </div>
                         </div>
@@ -87,38 +61,25 @@
                                 <div class="sp-heading">
                                     <h5><a href="#">{{ products.name }}</a></h5>
                                 </div>
-{#                                <span class="reference">Reference: demo_1</span>#}
-{#                                <div class="rating-box">#}
-{#                                    <ul>#}
-{#                                        <li><i class="ion-android-star"></i></li>#}
-{#                                        <li><i class="ion-android-star"></i></li>#}
-{#                                        <li><i class="ion-android-star"></i></li>#}
-{#                                        <li class="silver-color"><i class="ion-android-star"></i></li>#}
-{#                                        <li class="silver-color"><i class="ion-android-star"></i></li>#}
-{#                                    </ul>#}
-{#                                </div>#}
                                 <div class="sp-essential_stuff">
                                     <ul>
-                                        <li>Brands <a href="javascript:void(0)">{{ products.slug }}</a></li>
-{#                                        <li>Product Code: <a href="javascript:void(0)">Product 16</a></li>#}
-                                        <li>Original: <a href="javascript:void(0)"><span>{{ products.original_price  }}</span></a></li>
-{#                                        <input type="hidden" value="{{ products.selling_price }}" class="price">#}
-                                        <li>Selling: <a href="javascript:void(0)"><span class="price">{{ products.selling_price }}</span></a></li>
-                                        <li>Small description: <a href="javascript:void(0)">{{ products.small_description}}</a></li>
-{#                                        <li>Availability: <a href="javascript:void(0)">In Stock</a></li>#}
-
-{#                                        <li>Price in reward points: <a href="javascript:void(0)">400</a></li>#}
+                                        <li>Brands
+                                            <a href="javascript:void(0)">{{ products.slug }}</a></li>
+                                        <li>Original:
+                                            <a href="javascript:void(0)">
+                                                <span>{{ products.original_price  }}</span>
+                                            </a>
+                                        </li>
+                                        <li>Selling:
+                                            <a href="javascript:void(0)">
+                                                <span class="price">{{ products.selling_price }}</span>
+                                            </a>
+                                        </li>
+                                        <li>Small description:
+                                            <a href="javascript:void(0)">{{ products.small_description}}</a>
+                                        </li>
                                     </ul>
                                 </div>
-{#                                <div class="product-size_box">#}
-{#                                    <span>Size</span>#}
-{#                                    <select class="myniceselect nice-select">#}
-{#                                        <option value="1">S</option>#}
-{#                                        <option value="2">M</option>#}
-{#                                        <option value="3">L</option>#}
-{#                                        <option value="4">XL</option>#}
-{#                                    </select>#}
-{#                                </div>#}
                                 <div class="quantity">
                                     {% csrf_token %}
                                     <input type="hidden" value=" {{ products.id }}" class="prod_id">
@@ -127,17 +88,26 @@
                                         <input name="quantity" class="cart-plus-minus-box qty_input "  value= 1 type="text">
 
 
-                                        <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                        <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+                                        <div class="dec qtybutton">
+                                            <i class="fa fa-angle-down"></i>
+                                        </div>
+                                        <div class="inc qtybutton">
+                                            <i class="fa fa-angle-up"></i>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="qty-btn_area">
                                     <ul>
                                         {% if products.quantity > 0 %}
-                                        <li><button type="button" class="btn btn-primary btnaddToCart" >Add To Cart</button></li>
+                                            <li>
+                                                <button type="button" class="btn btn-primary btnaddToCart" >Add To Cart</button>
+                                            </li>
                                         {% endif %}
-                                        <li><a class="qty-wishlist_btn addToWishlist" data-toggle="tooltip" title="Add To Wishlist"><i class="ion-android-favorite-outline"></i></a></li>
-{#                                        <li><a class="qty-compare_btn" href="compare.html" data-toggle="tooltip" title="Compare This Product"><i class="ion-ios-shuffle-strong"></i></a></li>#}
+                                        <li>
+                                            <a class="qty-wishlist_btn addToWishlist" data-toggle="tooltip" title="Add To Wishlist">
+                                                <i class="ion-android-favorite-outline"></i>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="uren-tag-line">
@@ -189,10 +159,11 @@
                         <div class="sp-product-tab_nav">
                             <div class="product-tab">
                                 <ul class="nav product-menu">
-                                    <li><a class="active" data-toggle="tab" href="#description"><span>Description</span></a>
+                                    <li>
+                                        <a class="active" data-toggle="tab" href="#description">
+                                            <span>Description</span>
+                                        </a>
                                     </li>
-{#                                    <li><a data-toggle="tab" href="#specification"><span>Specification</span></a></li>#}
-{#                                    <li><a data-toggle="tab" href="#reviews"><span>Reviews (1)</span></a></li>#}
                                 </ul>
                             </div>
                             <div class="tab-content uren-tab_content">
@@ -201,107 +172,13 @@
                                         {{ products.description }}
                                     </div>
                                 </div>
-                                <div id="specification" class="tab-pane" role="tabpanel">
-                                    <table class="table table-bordered specification-inner_stuff">
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="2"><strong>Memory</strong></td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody>
-                                            <tr>
-                                                <td>test 1</td>
-                                                <td>8gb</td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody>
-                                            <tr>
-                                                <td colspan="2"><strong><Proce></Proce>ssor</strong></td>
-                                            </tr>
-                                        </tbody>
-                                        <tbody>
-                                            <tr>
-                                                <td>No. of Cores</td>
-                                                <td>1</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div id="reviews" class="tab-pane" role="tabpanel">
-                                    <div class="tab-pane active" id="tab-review">
-                                        <form class="form-horizontal" id="form-review">
-                                            <div id="review">
-                                                <table class="table table-striped table-bordered">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td style="width: 50%;"><strong>Customer</strong></td>
-                                                            <td class="text-right">15/09/20</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2">
-                                                                <p>Good product! Thank you very much</p>
-                                                                <div class="rating-box">
-                                                                    <ul>
-                                                                        <li><i class="ion-android-star"></i></li>
-                                                                        <li><i class="ion-android-star"></i></li>
-                                                                        <li><i class="ion-android-star"></i></li>
-                                                                        <li><i class="ion-android-star"></i></li>
-                                                                        <li><i class="ion-android-star"></i></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <h2>Write a review</h2>
-                                            <div class="form-group required">
-                                                <div class="col-sm-12 p-0">
-                                                    <label>Your Email <span class="required">*</span></label>
-                                                    <input class="review-input" type="email" name="con_email" id="con_email" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group required second-child">
-                                                <div class="col-sm-12 p-0">
-                                                    <label class="control-label">Share your opinion</label>
-                                                    <textarea class="review-textarea" name="con_message" id="con_message"></textarea>
-                                                    <div class="help-block"><span class="text-danger">Note:</span> HTML is not
-                                                        translated!</div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group last-child required">
-                                                <div class="col-sm-12 p-0">
-                                                    <div class="your-opinion">
-                                                        <label>Your Rating</label>
-                                                        <span>
-                                                    <select class="star-rating">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                </span>
-                                                    </div>
-                                                </div>
-                                                <div class="uren-btn-ps_right">
-                                                    <button class="uren-btn-2">Continue</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   </div>
-        <!-- Uren's Single Product Tab Area End Here -->
-}
-
-
-
+    </div>
+    <!-- Single Product End Here -->
 
 {% endblock content %}

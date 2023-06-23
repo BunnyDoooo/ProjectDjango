@@ -1,25 +1,23 @@
 {% extends 'store/layouts/main.html' %}
 {% load static %}
 
-
 {% block content %}
 
-
-
-<div class="breadcrumb-area">
-    <div class="container">
-        <div class="breadcrumb-content">
-            <h2>Check Out</h2>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li class="active" href=" {% url 'checkout' %}">Check Out</li>
-            </ul>
+    <div class="breadcrumb-area">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <h2>Check Out</h2>
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="active" href=" {% url 'checkout' %}">Check Out</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-
- <!-- Begin Uren's Checkout Area -->
+    <!-- Begin Checkout -->
     <div class="checkout-area">
         <div class="container-fluid">
             <form action="{% url 'placeorder' %}" method="POST">
@@ -47,48 +45,62 @@
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>First Name <span class="required">*</span></label>
-                                            <input required value="{{ request.user.first_name }}"  name="fname" placeholder="" type="text">
+                                            <input required value="{{ request.user.first_name }}" name="fname" placeholder="" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>Last Name <span class="required">*</span></label>
+                                            <label>Last Name
+                                                <span class="required">*</span>
+                                            </label>
                                             <input required value="{{ request.user.last_name }}" name="lname" placeholder="" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <label>Address <span class="required">*</span></label>
+                                            <label>Address
+                                                <span class="required">*</span>
+                                            </label>
                                             <input required value="{{ userprofile.address }}"  name="address" placeholder="Street address" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
-                                            <label>Town / City <span class="required">*</span></label>
+                                            <label>Town / City
+                                                <span class="required">*</span>
+                                            </label>
                                             <input required value="{{ userprofile.city }}" name="city" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>State / County <span class="required">*</span></label>
+                                            <label>State / County
+                                                <span class="required">*</span>
+                                            </label>
                                             <input required value="{{ userprofile.state }}" name="state" placeholder="" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>Postcode / Zip <span class="required">*</span></label>
+                                            <label>Postcode / Zip
+                                                <span class="required">*</span>
+                                            </label>
                                             <input required value="{{ userprofile.pincode }}" name="pincode" placeholder="" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>Email Address <span class="required">*</span></label>
+                                            <label>Email Address
+                                                <span class="required">*</span>
+                                            </label>
                                             <input required value="{{ request.user.email }}" name="email" placeholder="" type="email">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>Phone <span class="required">*</span></label>
+                                            <label>Phone
+                                                <span class="required">*</span>
+                                            </label>
                                             <input required value="{{ userprofile.phone }}" name="phone" placeholder="" type="text">
                                         </div>
                                     </div>
@@ -96,104 +108,118 @@
                             </div>
                         </form>
                     </div>
+
                     <div class="col-lg-6 col-12">
                         <div class="your-order">
                             <h3>Your order</h3>
                             {% if cartitems %}
                                 <div class="your-order-table table-responsive">
-                                <table class="table">
-                                    <thead>
+                                    <table class="table">
+                                        <thead>
                                         <tr>
                                             <th class="card-product-name image">Image</th>
                                             <th class="cart-product-name">Product</th>
                                             <th class="cart-product-total qty">Quantity</th>
                                             <th class="cart-product-total">Total</th>
                                         </tr>
-                                    </thead>
-                                    <tbody>
+                                        </thead>
+                                        <tbody>
                                         {% for item in cartitems  %}
                                             <tr class="cart_item">
-                                                <td class="card-product-name image"><img src="{{ item.product.product_image.url }}" height="90px" width="90px"></td>
+                                                <td class="card-product-name image">
+                                                    <img src="{{ item.product.product_image.url }}" height="90px" width="90px">
+                                                </td>
                                                 <td class="cart-product-name">{{ item.product.name }}</td>
-                                                <td class="cart-product-total qty "> <strong class="product-quantity  "  >× {{ item.product_qty }}</strong></td>
-                                                <td class="cart-product-total"><span class="amount">${{ item.product.selling_price }}</span></td>
+                                                <td class="cart-product-total qty">
+                                                    <strong class="product-quantity">× {{ item.product_qty }}</strong>
+                                                </td>
+                                                <td class="cart-product-total">
+                                                    <span class="amount">${{ item.product.selling_price }}</span>
+                                                </td>
                                             </tr>
                                         {% endfor %}
-
-                                    </tbody>
-                                    <tfoot>
+                                        </tbody>
+                                        <tfoot>
                                         <tr class="cart-subtotal">
                                             <th>Cart Subtotal</th>
-                                            <td><span class="amount">${{ total_price }}</span></td>
+                                            <td>
+                                                <span class="amount">${{ total_price }}</span>
+                                            </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Order Total</th>
-                                            <td><strong><span class="amount">${{ total_price }}</span></strong></td>
+                                            <td>
+                                                <strong>
+                                                    <span class="amount">${{ total_price }}</span>
+                                                </strong>
+                                            </td>
                                         </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                                <input type="hidden" value="COD" name="payment_mode">
-                            <div class="payment-method">
-                                <div class="payment-accordion">
-                                    <div id="accordion">
-                                        <div class="card">
-                                            <div class="card-header" id="#payment-1">
-                                                <h5 class="panel-title">
-                                                    <a href="javascript:void(0)" class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                        Direct Bank Transfer.
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    <p>Make your payment directly into our bank account. Please use your Order
-                                                        ID as the payment
-                                                        reference. Your order won’t be shipped until the funds have cleared in
-                                                        our account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header" id="#payment-3">
-                                                <h5 class="panel-title">
-                                                    <a href="javascript:void(0)" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                        PayPal
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseThree" class="collapse" data-parent="#accordion">
-                                                <div class="card-body">
-                                                    <p>Make your payment directly into our bank account. Please use your Order
-                                                        ID as the payment
-                                                        reference. Your order won’t be shipped until the funds have cleared in
-                                                        our account.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order-button-payment">
-                                        <input value="Place order" type="submit">
-                                    </div>
-                                    <br>
-                                    <div id="paypal-button-container"></div>
+                                        </tfoot>
+                                    </table>
                                 </div>
-                            </div>
-                            {% else %}
-
+                                <input type="hidden" value="COD" name="payment_mode">
+                                <div class="payment-method">
+                                    <div class="payment-accordion">
+                                        <div id="accordion">
+                                            <div class="card">
+                                                <div class="card-header" id="#payment-1">
+                                                    <h5 class="panel-title">
+                                                        <a href="javascript:void(0)"
+                                                           class="" data-toggle="collapse"
+                                                           data-target="#collapseOne"
+                                                           aria-expanded="true"
+                                                           aria-controls="collapseOne">
+                                                            Direct Bank Transfer.
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <p>Make your payment directly into our bank account. Please use your Order
+                                                            ID as the payment
+                                                            reference. Your order won’t be shipped until the funds have cleared in
+                                                            our account.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="#payment-3">
+                                                    <h5 class="panel-title">
+                                                        <a href="javascript:void(0)"
+                                                           class="collapsed"
+                                                           data-toggle="collapse"
+                                                           data-target="#collapseThree"
+                                                           aria-expanded="false"
+                                                           aria-controls="collapseThree">
+                                                            PayPal
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <p>Make your payment directly into our bank account. Please use your Order
+                                                            ID as the payment
+                                                            reference. Your order won’t be shipped until the funds have cleared in
+                                                            our account.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="order-button-payment">
+                                            <input value="Place order" type="submit">
+                                        </div>
+                                        <br>
+                                        <div id="paypal-button-container"></div>
+                                    </div>
+                                </div>
                             {% endif %}
-
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-        <!-- Uren's Checkout Area End Here -->
-
-
-
-
+    <!-- Checkout End Here -->
 
 {% endblock content %}
 
@@ -201,99 +227,99 @@
 {% block js %}
 
     <!-- Replace "test" with your own sandbox Business account app client ID -->
-<script src="https://www.paypal.com/sdk/js?client-id=ASStP7JMB4Y-Mib8f0iiZc10ewigmad6kPzE-KGaKP26BfOwYckIRpkqExXAJ7pmSalw7uGNEOM3wOYR&currency=USD"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ASStP7JMB4Y-Mib8f0iiZc10ewigmad6kPzE-KGaKP26BfOwYckIRpkqExXAJ7pmSalw7uGNEOM3wOYR&currency=USD"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
-      paypal.Buttons({
-           style: {
-            layout: 'vertical',
-            color:  'blue',
-            shape:  'rect',
-            label:  'paypal'
+        paypal.Buttons({
+            style: {
+                layout: 'vertical',
+                color:  'blue',
+                shape:  'rect',
+                label:  'paypal'
             },
 
-          onClick : function(data, actions){
-            var fname = $("[name= 'fname']").val();
-            var lname = $("[name= 'lname']").val();
-            var email = $("[name= 'email']").val();
-            var phone = $("[name= 'phone']").val();
-            var address = $("[name= 'address']").val();
-            var city = $("[name= 'city']").val();
-            var state = $("[name= 'state']").val();
-            var country = $("[name= 'country']").val();
-            var pincode = $("[name= 'pincode']").val();
-            var token = $('[name="csrfmiddlewaretoken"]').val();
-            
-            if (fname == "" || lname == ""  || email == "" || phone == "" || address == "" || city == "" || state == "" || country == "" || pincode == "" )
-            {
-                swal("Alert!", "All fields are manadatory!", "error");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-          },
-        // Order is created on the server and the order id is returned
+            onClick : function(data, actions){
+                var fname = $("[name= 'fname']").val();
+                var lname = $("[name= 'lname']").val();
+                var email = $("[name= 'email']").val();
+                var phone = $("[name= 'phone']").val();
+                var address = $("[name= 'address']").val();
+                var city = $("[name= 'city']").val();
+                var state = $("[name= 'state']").val();
+                var country = $("[name= 'country']").val();
+                var pincode = $("[name= 'pincode']").val();
+                var token = $('[name="csrfmiddlewaretoken"]').val();
 
-
-        createOrder: function(data, actions){
-         return actions.order.create({
-            purchase_units: [{
-                amount: {
-                    value: '0.01'
+                if (fname == "" || lname == ""  || email == "" || phone == "" || address == "" || city == "" || state == "" || country == "" || pincode == "" )
+                {
+                    swal("Alert!", "All fields are manadatory!", "error");
+                    return false;
                 }
-            }]
-         });
-        },
+                else
+                {
+                    return true;
+                }
+            },
+            // Order is created on the server and the order id is returned
 
 
-        // Finalize the transaction on the server after payer approval
-        onApprove: function(data, actions) {
-         return actions.order.capture().then(function (orderData) {
-             console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-             alert(orderData.id);
-             {#var transaction = orderData.purchase_units[0].payments.captures[0];#}
-             {#alert('Transaction' + transaction.status +':'+ transaction.id + '\n\nSee console for all available details');#}
-             var fname = $("[name= 'fname']").val();
-             var lname = $("[name= 'lname']").val();
-             var email = $("[name= 'email']").val();
-             var phone = $("[name= 'phone']").val();
-             var address = $("[name= 'address']").val();
-             var city = $("[name= 'city']").val();
-             var state = $("[name= 'state']").val();
-             var country = $("[name= 'country']").val();
-             var pincode = $("[name= 'pincode']").val();
-             var token = $("[name= 'csrfmiddlewaretoken']").val();
-             data = {
-                 "fname": fname,
-                 "lname": lname,
-                 "email": email,
-                 "phone": phone,
-                 "address": address,
-                 "city": city,
-                 "state": state,
-                 "country": country,
-                 "pincode": pincode,
-                 "payment_mode": "Paid by PayPal",
-                 "payment_id": orderData.id,
-                 csrfmiddlewaretoken: token
-             }
-             $.ajax({
-                 method: "POST",
-                 url: "/place-order",
-                 data: data,
-                 success: function (responsec) {
-                     swal("Congratulations!", responsec.status ,"success").then((value) => {
-                         Window.location.href = '/orders/index.html'
-                     });
-                 }
-             });
-         });
-        }
-      }).render('#paypal-button-container');
+            createOrder: function(data, actions){
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '0.01'
+                        }
+                    }]
+                });
+            },
+
+
+            // Finalize the transaction on the server after payer approval
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function (orderData) {
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    alert(orderData.id);
+                    {#var transaction = orderData.purchase_units[0].payments.captures[0];#}
+                    {#alert('Transaction' + transaction.status +':'+ transaction.id + '\n\nSee console for all available details');#}
+                    var fname = $("[name= 'fname']").val();
+                    var lname = $("[name= 'lname']").val();
+                    var email = $("[name= 'email']").val();
+                    var phone = $("[name= 'phone']").val();
+                    var address = $("[name= 'address']").val();
+                    var city = $("[name= 'city']").val();
+                    var state = $("[name= 'state']").val();
+                    var country = $("[name= 'country']").val();
+                    var pincode = $("[name= 'pincode']").val();
+                    var token = $("[name= 'csrfmiddlewaretoken']").val();
+                    data = {
+                        "fname": fname,
+                        "lname": lname,
+                        "email": email,
+                        "phone": phone,
+                        "address": address,
+                        "city": city,
+                        "state": state,
+                        "country": country,
+                        "pincode": pincode,
+                        "payment_mode": "Paid by PayPal",
+                        "payment_id": orderData.id,
+                        csrfmiddlewaretoken: token
+                    }
+                    $.ajax({
+                        method: "POST",
+                        url: "/place-order",
+                        data: data,
+                        success: function (responsec) {
+                            alert(responsec.status );
+                            window.location.href = '{% url 'myorders' %}';
+
+                        }
+                    });
+                });
+            }
+        }).render('#paypal-button-container');
     </script>
 
 

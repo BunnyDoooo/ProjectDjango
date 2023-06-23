@@ -6,73 +6,56 @@
 
 <head>
     {% block title %}
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Uren - Car Accessories Shop HTML Template</title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Uren - Car Accessories Shop HTML Template</title>
+        <meta name="robots" content="noindex, follow" />
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+        <!-- CSS
+        ============================================ -->
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}">
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="{% static '/css/vendor/font-awesome.css' %}">
+        <!-- Fontawesome Star -->
+        <link rel="stylesheet" href="{% static '/css/vendor/fontawesome-stars.css' %}">
+        <!-- Ion Icon -->
+        <link rel="stylesheet" href="{% static '/css/vendor/ion-fonts.css' %}">
+        <!-- Slick CSS -->
+        <link rel="stylesheet" href="{% static '/css/plugins/slick.css' %}">
+        <!-- Animation -->
+        <link rel="stylesheet" href="{% static '/css/plugins/animate.css' %}">
+        <!-- jQuery Ui -->
+        <link rel="stylesheet" href="{% static '/css/plugins/jquery-ui.min.css' %}">
+        <!-- Lightgallery -->
+        <link rel="stylesheet" href="{% static '/css/plugins/lightgallery.min.css' %}">
+        <!-- Nice Select -->
+        <link rel="stylesheet" href="{% static '/css/plugins/nice-select.css' %}">
+        <link rel="stylesheet" href="{% static '/css/style.css' %}">
 
-    <!-- CSS
-	============================================ -->
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}">
-    <!-- Fontawesome -->
-    <link rel="stylesheet" href="{% static '/css/vendor/font-awesome.css' %}">
-    <!-- Fontawesome Star -->
-    <link rel="stylesheet" href="{% static '/css/vendor/fontawesome-stars.css' %}">
-    <!-- Ion Icon -->
-    <link rel="stylesheet" href="{% static '/css/vendor/ion-fonts.css' %}">
-    <!-- Slick CSS -->
-    <link rel="stylesheet" href="{% static '/css/plugins/slick.css' %}">
-    <!-- Animation -->
-    <link rel="stylesheet" href="{% static '/css/plugins/animate.css' %}">
-    <!-- jQuery Ui -->
-    <link rel="stylesheet" href="{% static '/css/plugins/jquery-ui.min.css' %}">
-    <!-- Lightgallery -->
-    <link rel="stylesheet" href="{% static '/css/plugins/lightgallery.min.css' %}">
-    <!-- Nice Select -->
-    <link rel="stylesheet" href="{% static '/css/plugins/nice-select.css' %}">
-
-    <!-- Vendor & Plugins CSS (Please remove the comment from below vendor.min.css' %} & plugins.min.css' %} for better website load performance and remove css files from the above) -->
-    <!--
-    <script src="{% static '/js/vendor/vendor.min.js' %}"></script>
-    <script src="{% static '/js/plugins/plugins.min.js' %}"></script>
-    -->
-{#    <script src="{% static '../../Jquery/prettify.js' %}"></script>#}
-    <!-- Main Style CSS (Please use minify version for better website load performance) -->
-    <link rel="stylesheet" href="{% static '/css/style.css' %}">
-{#    <!--<link rel="stylesheet" href="{% static '/css/style.min.css' %}">-->#}
-{% endblock %}
+    {% endblock %}
 </head>
 <body>
+<header>
+    {% include 'store/inc/header.html' %}
+</header>
+<main>
+    {% block content %}
 
-{#{% include 'store/inc/slider.html' %}#}
-    <header>
-        <!-- Thêm header của trang web -->
-        {% include 'store/inc/header.html' %}
-    </header>
-    <main>
-        {% block content %}
+    {% endblock content %}
+</main>
+<footer>
+    {% include 'store/inc/Footer.html' %}
+</footer>
 
-        {% endblock content %}
-    </main>
-
-    <footer>
-     {% include 'store/inc/Footer.html' %}
-        <!-- Thêm footer của trang web -->
-    </footer>
-
-
-    <!-- JS
+<!-- JS
 ============================================ -->
 {% block js %}
     <!-- jQuery JS -->
     <script src="{% static '/js/vendor/jquery-1.12.4.min.js' %}"></script>
-{#    <script src="{% static '/js/vendor/jquery-3.6.0.js' %}s"></script>#}
     <script src="{% static '/js/vendor/jquery-ui.js' %}"></script>
     <!-- Modernizer JS -->
     <script src="{% static '/js/vendor/modernizr-2.8.3.min.js' %}"></script>
@@ -103,59 +86,27 @@
     <script src="{% static '/js/plugins/waypoints.min.js' %}"></script>
     <!-- jQuery Zoom JS -->
     <script src="{% static '/js/plugins/jquery.zoom.min.js' %}"></script>
-{#    <script src="{% static '../../Jquery/prettify.js' %}"></script>#}
-
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <!-- Vendor & Plugins JS (Please remove the comment from below vendor.min.js' %} & plugins.min.js' %} for better website load performance and remove js files from avobe) -->
-    <!--
-{#<script src="{% static '/js/vendor/vendor.min.js' %}"></script>#}
-<script src="{% static '/js/plugins/plugins.min.js' %}"></script>
--->
-
     <!-- Main JS -->
     <script src="{% static '/js/main.js' %}"></script>
-
-
-
-
+    <!-- Search -->
     <script>
-
-    $( function() {
-    var availableTags = [];
-
-    $.ajax({
-       method: "GET",
-        url: "/product-list",
-        success:function (response) {
-
-           startAutocomplete(response);
-        }
-
-    });
-
-    function startAutocomplete(availableTags){
-        $( "#search" ).autocomplete({
-        source: availableTags
-    });
-    }
-
-
-  } );
-
+        $( function() {
+            var availableTags = [];
+            $.ajax({
+                method: "GET",
+                url: "/product-list",
+                success:function (response) {
+                    startAutocomplete(response);
+                }
+            });
+            function startAutocomplete(availableTags){
+                $( "#search" ).autocomplete({
+                    source: availableTags
+                });
+            }
+        });
     </script>
-{#<script>#}
-{##}
-{# $(document).ready(function() {#}
-{#        $('#search').keyup(function() {#}
-{#            // Lấy giá trị của phần tìm kiếm#}
-{#            var search = $(this).val();#}
-{#            #}
-{#            // Tiếp tục xử lý tìm kiếm...#}
-{#        });#}
-{#    });#}
-{#</script>#}
-
-
 {% endblock %}
 </body>
 

@@ -8,13 +8,14 @@
             <div class="breadcrumb-content">
                 <h2>Order View</h2>
                 <ul>
-                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
                     <li class="active" href=" {% url 'checkout' %}">Check Out</li>
                 </ul>
             </div>
         </div>
     </div>
-
 
     <div class="checkout-area">
         <div class="container-fluid">
@@ -24,7 +25,9 @@
                     <div class="col-lg-6 col-12">
                         <div class="card-headers">
                             <h2>Orders View
-                                <a href="{% url 'myorders' %}" class="btn btn-warning text-white"><i class="fa fa-reply"> </i> Back</a>
+                                <a href="{% url 'myorders' %}" class="btn btn-warning text-white">
+                                    <i class="fa fa-reply"></i> Back
+                                </a>
                             </h2>
                         </div>
                         <div class="card-body">
@@ -75,9 +78,9 @@
                                         {% endfor %}
                                         </tbody>
                                     </table>
-
-                                    <h4>Grand Total: <span class="float-end">${{ order.total_price }}</span></h4>
-
+                                    <h4>Grand Total:
+                                        <span class="float-end">${{ order.total_price }}</span>
+                                    </h4>
                                     <h6 class="p-1">Payment method: </h6>
                                     <h6 class="p-1">Order status: {{ order.status }} </h6>
                                     <h6 class="p-1">Tracking No: {{ order.tracking_no }} </h6>
