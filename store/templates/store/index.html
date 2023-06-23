@@ -360,9 +360,9 @@
                                             <div class="product-content">
                                                 <div class="product-desc_info">
 
-                                                    <h6><a class="product-name"
-                                                           href="{% url 'productview' item.category.slug item.slug %}">{{
-                                                            item.name }}</a></h6>
+                                                    <h6>
+                                                        <a class="product-name" href="{% url 'productview' item.category.slug item.slug %}">{{item.name }}</a>
+                                                    </h6>
                                                     <div class="price-box">
                                                         <span class="new-price">${{ item.original_price }}</span>
                                                     </div>
