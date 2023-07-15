@@ -69,9 +69,9 @@ def placeorder (request):
             cart_total_price = cart_total_price + item.product.selling_price*item.product_qty
 
         neworder.total_price = cart_total_price
-        trackno = 'sharma' + str(random.randint(111111111, 999999999))
+        trackno = 'uren' + str(random.randint(111111111, 999999999))
         while Order.objects.filter(tracking_no=trackno) is None:
-            trackno = 'sharma' + str(random.randint(111111111, 999999999))
+            trackno = 'uren' + str(random.randint(111111111, 999999999))
 
         neworder.tracking_no = trackno
         neworder.save()
