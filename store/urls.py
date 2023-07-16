@@ -14,7 +14,6 @@ urlpatterns = (
 
 
     path('product-list', views.productListAjax),
-    # path('searchProduct', views.searchProduct, name="searchProduct"),
     path('search', views.search, name="search"),
 
     path('register/', authview.register, name="register"),
