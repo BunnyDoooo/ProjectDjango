@@ -895,7 +895,6 @@
 			success: function (response) {
 				alert(response.status)
 				location.reload();
-				loadCartCount();
 			}
 		});
 	});

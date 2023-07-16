@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 def home(request):
     products = Product.objects.filter(status=0)
     context = {'products': products}
-    return render(request, "store/index.html",context )
+    return render(request, "store/index.html", context)
 
 def collections(request):
     category = Category.objects.filter(status=0)
